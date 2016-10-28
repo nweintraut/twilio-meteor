@@ -10,7 +10,7 @@ Meteor.startup(() => {
 export const Groups = new Mongo.Collection("groups");
 if (Meteor.isServer) {
     var config = require('./config');
-var TwilioClient = require('twilio')(config.accountSid, config.authToken);
+    var TwilioClient = require('twilio')(config.accountSid, config.authToken);
     // Specify which collections are sent to the client
     Meteor.publish("groups", function () {
         return Groups.find({
@@ -92,25 +92,18 @@ sendMessage: function (outgoingMessage) {
     uniquePhoneBook.forEach(function (number) {
         console.log("Sending " + outgoingMessage + " to " + number + " from: " + process.env.TWILIO_NUMBER);
         TwilioClient.messages.post({
-      
-          to: number, // Any number Twilio can deliver to
-          from: process.env.TWILIO_NUMBER, // A number you bought from Twilio and can use for outbound communication
-          body: outgoingMessage,
-          mediaUrl: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
-      
-      }, function (err, responseData) {
-          if (!err) {
-                       console.log(responseData); 
-          } else {
+            to: number, // Any number Twilio can deliver to
+            from: process.env.TWILIO_NUMBER, // A number you bought from Twilio and can use for outbound communication
+            body: outgoingMessage,
+            mediaUrl: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
+        }, function (err, responseData) {
+            if (!err) {
+                console.log(responseData); 
+            } else {
               console.log("Error sending multimedia message");
               console.log(err);
           }
-      
-
-      
-      });
-        
-        
+        });
         
         /*
         HTTP.call(
