@@ -1,0 +1,13 @@
+{
+  "name": "GroupMeteor",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "dotenv": "^2.0.0",
+    "meteor-node-stubs": "~0.2.0",
+    "twilio": "^2.11.0"
+  }
+}
